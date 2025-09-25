@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_25_080808) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_25_111134) do
   create_table "gateways", force: :cascade do |t|
     t.string "serial"
     t.integer "server_id", null: false
@@ -39,6 +39,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_25_080808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
+    t.integer "points", default: 0
+    t.string "theme", default: "light"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

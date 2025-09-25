@@ -1,2 +1,33 @@
 /* Tailwind v4 entry */
 @import "tailwindcss";
+
+/* Lightmode */
+body.light {
+    @apply bg-gray-100 text-gray-900;
+}
+
+body.light main {
+    @apply bg-gray-50 text-gray-900;
+}
+
+body.light aside {
+    @apply bg-[#003366] text-white;
+}
+
+/* Darkmode */
+body.dark {
+    @apply bg-gray-900 text-gray-100;
+}
+
+body.dark main {
+    @apply bg-gray-800 text-gray-100;
+}
+
+body.dark aside {
+    @apply bg-gray-950 text-gray-100;
+}
+
+body.dark a,
+body.dark button {
+    @apply text-gray-100 hover:bg-gray-700;
+}

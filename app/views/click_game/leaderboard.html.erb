@@ -1,0 +1,15 @@
+<h2 class="text-xl font-bold mb-4">Rangliste</h2>
+
+<div data-controller="leaderboard">
+  <ol class="space-y-2">
+    <% @users.each_with_index do |user, index| %>
+      <li class="flex justify-between items-center p-2 bg-gray-100 rounded shadow">
+        <span class="font-semibold"><%= index + 1 %>. <%= user.email %></span>
+        <span class="text-indigo-600 font-bold"><%= user.points %> Punkte</span>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+<%= link_to "Zurück zum Spiel", click_game_index_path,
+            class: "mt-6 inline-block text-blue-600 hover:underline" %>
