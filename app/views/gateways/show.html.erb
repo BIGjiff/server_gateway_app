@@ -1,0 +1,25 @@
+<h1 class="text-2xl font-bold text-[#003366] mb-6">Gateway Details</h1>
+
+<div class="bg-white border border-gray-300 rounded-xl shadow-md p-6 mb-6">
+  <h2 class="text-xl font-semibold text-[#003366] mb-4">
+    Gateway <%= @gateway.serial %>
+  </h2>
+
+  <p class="mb-2 text-gray-600">
+    Zugewiesen an:
+    <% if @gateway.server.present? %>
+      <span class="font-medium"><%= @gateway.server.name %></span>
+    <% else %>
+      <span class="italic text-gray-400">Kein Server</span>
+    <% end %>
+  </p>
+
+  <p class="text-gray-600 mb-4">
+    Zuletzt bearbeitet: <%= @gateway.updated_at.strftime("%d.%m.%Y %H:%M") %>
+  </p>
+
+  <div class="flex space-x-3">
+    <%= link_to " Bearbeiten", edit_gateway_path(@gateway), class: "text-yellow-600 hover:underline text-sm" %>
+    <%= link_to " Zurück zur Übersicht", gateways_path, class: "text-blue-600 hover:underline text-sm" %>
+  </div>
+</div>

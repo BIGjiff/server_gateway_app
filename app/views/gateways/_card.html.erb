@@ -1,0 +1,12 @@
+<div class="max-w-lg bg-white shadow rounded-lg p-6 mb-6">
+  <h2 class="text-xl font-semibold mb-4">Gateway <%= gateway.serial %></h2>
+  <p class="text-gray-600 mb-2">Server: <%= gateway.server&.name || "Nicht zugewiesen" %></p>
+  <p class="text-gray-600 mb-4">Zuletzt bearbeitet: <%= gateway.updated_at.strftime("%d.%m.%Y %H:%M") %></p>
+
+  <div class="flex flex-col space-y-2">
+    <%= link_to " Informationen", gateway_path(gateway), class: "text-blue-600 hover:underline" %>
+    <%= link_to " Bearbeiten", edit_gateway_path(gateway), class: "text-green-600 hover:underline" %>
+    <%= link_to " Löschen", gateway, method: :delete, data: { confirm: "Bist du sicher?" }, class: "text-red-600 hover:underline" %>
+  </div>
+</div>
+

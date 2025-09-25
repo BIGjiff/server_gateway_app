@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <title><%= content_for(:title) || "Server Gateway App" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <%= yield :head %>
+
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+
+  <%= javascript_importmap_tags %>
+</head>
+
+<body class="bg-gray-100 "> <!-- text-gray-900 -->
+
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="w-1/4 bg-[#003366] text-white p-6 space-y-6">
+    <h2 class="text-2xl font-bold mb-6">Securus </h2>
+    <h3 class="text-2xl  mb-10">Navigation </h3>
+    <nav class="space-y-2"> <!-- Das verändert den abstand zwischen den Einträgen -->
+      <%= link_to "Server", servers_path, class: "block hover:bg-blue-700 p-2 rounded" %>
+      <%= link_to "Gateways", gateways_path, class: "block hover:bg-blue-700 p-2 rounded" %>
+      <% if user_signed_in? %>
+        <%= button_to "Abmelden", destroy_user_session_path,
+                      method: :delete,
+                      class: "block hover:bg-blue-700 p-2 rounded" %>
+      <% end %>
+    </nav>
+
+  </aside>
+
+  <!-- Hauptbereich -->
+  <main class="flex-1 p-10 bg-gray-50 "> <!-- text-gray-900 -->
+    <%= yield %>
+  </main>
+</div>
+</body>
+</html>
