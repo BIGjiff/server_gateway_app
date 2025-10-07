@@ -5,6 +5,9 @@
                url: registration_path(resource_name),
                html: { method: :put, class: "space-y-4" }) do |f| %>
 
+    <%# Fehlerausgaben (optional, wenn du den Partial hast) %>
+    <%= render "devise/shared/error_messages", resource: resource if lookup_context.exists?("devise/shared/error_messages") %>
+
     <div>
       <%= f.label :username, "Benutzername", class: "block text-sm font-medium text-gray-700" %>
       <%= f.text_field :username, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" %>
@@ -16,4 +19,31 @@
                         class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" %>
     </div>
 
-  <% if devise_mapping.c_
+
+
+    <div>
+      <%= f.label :password, "Neues Passwort", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password, autocomplete: "new-password",
+                           class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" %>
+      <p class="text-xs text-gray-500 mt-1">Leer lassen, wenn du es nicht ändern möchtest.</p>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, "Passwortbestätigung", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                           class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" %>
+    </div>
+
+    <div>
+      <%= f.label :current_password, "Aktuelles Passwort", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :current_password, autocomplete: "current-password",
+                           class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2", required: true %>
+      <p class="text-xs text-gray-500 mt-1">Zur Bestätigung der Änderungen erforderlich.</p>
+    </div>
+
+    <div class="pt-2">
+      <%= f.submit "Speichern",
+                   class: "w-full inline-flex justify-center items-center rounded-md px-4 py-2 text-sm font-medium bg-blue-600 text-white hover:bg-blue-700" %>
+    </div>
+  <% end %>
+</div>

@@ -1,20 +1,26 @@
-<div class="bg-white border border-gray-300 rounded-xl shadow-md p-6 max-w-lg">
+<div class="max-w-lg mx-auto bg-white border border-gray-200 rounded-xl shadow-md p-6">
   <%= form_with(model: gateway, local: true) do |f| %>
     <div class="mb-4">
-      <%= f.label :serial, "Seriennummer", class: "block text-sm font-medium text-gray-700" %>
-      <%= f.text_field :serial, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+      <%= f.label :serial, "Seriennummer", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= f.text_field :serial, class: "w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :server_id, "Server zuweisen", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.label :server_id, "Server zuweisen", class: "block text-sm font-medium text-gray-700 mb-1" %>
       <%= f.collection_select :server_id, Server.all, :id, :name,
-                              { include_blank: true },
-                              { class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" } %>
+                              { include_blank: "Kein Server" },
+                              { class: "w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" } %>
     </div>
 
-    <div class="flex space-x-3">
-      <%= f.submit " Speichern", class: "" %>
-      <%= link_to " Abbrechen", gateways_path, class: "" %>
+    <div class="flex items-center space-x-2 mb-4">
+      <%= f.label :active, "Gateway aktiv?", class: "text-sm font-medium text-gray-700" %>
+      <%= f.check_box :active, class: "rounded text-green-600 focus:ring-green-500" %>
+    </div>
+
+    <div class="flex justify-end gap-3 mt-6">
+      <%= f.submit "Speichern", class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" %>
+      <%= link_to "Abbrechen", gateways_path, class: "px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition" %>
     </div>
   <% end %>
 </div>
+

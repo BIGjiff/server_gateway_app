@@ -3,8 +3,23 @@ class GatewaysController < ApplicationController
 
     # GET /gateways
     def index
-      @gateways = Gateway.all.includes(:server) # lädt Server gleich mit
+      @filter = params[:filter]
+      @gateways = Gateway.all
+
+      case @filter
+      when "active"
+        @gateways = @gateways.active
+      when "inactive"
+        @gateways = @gateways.inactive
+      when "assigned"
+        @gateways = @gateways.assigned
+      when "unassigned"
+        @gateways = @gateways.unassigned
+      else
+        @gateways = Gateway.all
+      end
     end
+
 
     # GET /gateways/1
     def show

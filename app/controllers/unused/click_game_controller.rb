@@ -10,11 +10,11 @@ class ClickGameController < ApplicationController
     reaction_time = params[:reaction_time].to_f
 
     points = case reaction_time
-             when 0..1 then 20
-             when 1..5 then 15
-             when 5..10 then 10
-             else 0
-             end
+    when 0..1 then 20
+    when 1..5 then 15
+    when 5..10 then 10
+    else 0
+    end
 
     current_user.increment!(:points, points)
 

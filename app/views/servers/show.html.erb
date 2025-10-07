@@ -1,36 +1,16 @@
-<h1 class="text-2xl font-bold text-[#003366] mb-6"><%= @server.name %></h1>
+<div class="max-w-lg mx-auto bg-white border border-gray-200 rounded-xl shadow-md p-6">
+  <h2 class="text-xl font-semibold mb-4">Server-Details</h2>
 
-<h1 class="text-yellow-600  text-2xl">Hallo Wlet</h1>
+  <div class="space-y-3 text-sm text-gray-700">
+    <p><strong>Name:</strong> <%= @server.name %></p>
+    <p><strong>Beschreibung:</strong> <%= @server.description.presence || "Keine Beschreibung" %></p>
+    <p><strong>Gateways:</strong> <%= pluralize(@server.gateways.count, "Gateway") %></p>
+  </div>
 
-<p class="mb-4">
-  Status:
-  <% if @server.status == "aktiv" %>
-    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Aktiv</span>
-  <% else %>
-    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">Inaktiv</span>
-  <% end %>
-</p>
-
-<h2 class="text-xl font-semibold text-[#003366] mb-3">Zugewiesene Gateways</h2>
-
-<% if @server.gateways.any? %>
-
-
-
-  <ul class="space-y-2 w-full">
-    <% @server.gateways.each do |gateway| %>
-      <li class="w-full bg-white border border-gray-300 rounded-md shadow p-3 ml-6 flex items-center">
-        <span>Gateway <%= gateway.serial %></span>
-        <%= link_to "Anzeigen", gateway_path(gateway),
-                    class: "ml-auto text-blue-600 hover:underline" %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p class="italic text-gray-500">Keine Gateways zugewiesen</p>
-<% end %>
-
-<div class="mt-6 flex space-x-3">
-  <%= link_to " Bearbeiten", edit_server_path(@server), class: "text-yellow-600 hover:underline text-sm" %>
-  <%= link_to " Zurück zu Übersicht", servers_path, class: "text-gray-600 hover:underline text-sm" %>
+  <div class="flex justify-end gap-3 mt-6">
+    <%= link_to "Bearbeiten", edit_server_path(@server),
+                class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" %>
+    <%= link_to "Zurück", servers_path,
+                class: "px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition" %>
+  </div>
 </div>

@@ -34,27 +34,9 @@
           <%= button_to "Abmelden", destroy_user_session_path,
                         method: :delete,
                         class: "block hover:bg-blue-700 p-2 rounded" %>
-          <%= link_to "Kliggän", leaderboard_click_game_index_path,
-                      class: "text-left w-full block hover:bg-blue-700 p-2 rounded" %>
         <% end %>
       </nav>
     </div>
-    <!-- unterer Bereich -->
-    <% if user_signed_in? %>
-      <div class="space-y-4">
-        <% if current_user.points >= 500 %>
-          <%= button_to "Darkmode umschalten",
-                        toggle_theme_click_game_index_path,
-                        method: :patch,
-                        class: "w-full block bg-indigo-500 hover:bg-indigo-600 p-2 rounded" %>
-        <% else %>
-          <p class="text-sm italic text-gray-300">
-            Darkmode ab 500 Punkten freischalten 🎁
-          </p>
-        <% end %>
-
-      </div>
-    <% end %>
   </aside>
 
   <!-- Hauptbereich -->

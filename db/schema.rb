@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_25_111134) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_093556) do
   create_table "gateways", force: :cascade do |t|
     t.string "serial"
     t.integer "server_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.boolean "active", default: false
     t.index ["serial"], name: "index_gateways_on_serial", unique: true
     t.index ["server_id"], name: "index_gateways_on_server_id"
   end
@@ -27,6 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_25_111134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|

@@ -6,24 +6,24 @@ export default class extends Controller {
 
     connect() {
         console.log("ClickGameController verbunden!")
+        this.dotSize = 80 // entspricht w-20 h-20 in Tailwind
         this.spawnDot()
     }
 
     spawnDot() {
         const dot = document.createElement("div")
-        dot.className = "absolute w-20 h-20 rounded-full border-4 border-black bg-red-500 z-50";
-        dot.style.top = "50px";
-        dot.style.left = "50px";
-        dot.style.backgroundColor = this.randomColor()
+        dot.className = "absolute w-20 h-20 rounded-full border-4 border-black bg-red-500 z-50"
 
-        // sichere Positionierung (innerhalb des Spielfeldes bleiben)
-        const maxTop = this.gameAreaTarget.offsetHeight - 40
-        const maxLeft = this.gameAreaTarget.offsetWidth - 40
+        // sichere Positionierung innerhalb des gameArea-Containers
+        const maxTop = this.gameAreaTarget.offsetHeight - this.dotSize
+        const maxLeft = this.gameAreaTarget.offsetWidth - this.dotSize
         dot.style.top = `${Math.random() * maxTop}px`
         dot.style.left = `${Math.random() * maxLeft}px`
 
+        // Startzeit merken
         this.startTime = Date.now()
 
+        // Klick-Event
         dot.addEventListener("click", () => {
             const reactionTime = (Date.now() - this.startTime) / 1000
 
