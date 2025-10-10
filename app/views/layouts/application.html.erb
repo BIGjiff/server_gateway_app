@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
   <%= yield :head %>
 
@@ -22,27 +22,23 @@
 <div class="flex min-h-screen">
 
   <!-- Sidebar -->
-  <aside class="w-1/6 bg-[#003366] text-white p-6 flex flex-col justify-between">
-    <%= image_tag "securus-logo.svg"%>
-    <!-- mittlere Bereich -->
-    <h1 class="text-2xl ">Navigation</h1>
-      <nav class="space-y-4">
-        <%= link_to "⏵  Server", servers_path, class: "block hover:bg-blue-700 p-2 rounded" %>
-        <%= link_to "⏵  Gateways", gateways_path, class: "block hover:bg-blue-700 p-2 rounded" %>
-        <%= link_to "⏵  Benutzer", users_path, class: "block hover:bg-blue-700 p-2 rounded" %>
-        <%= link_to "⏵ Profil bearbeiten", edit_user_registration_path,
-                    class: "block hover:bg-blue-700 p-2 rounded" %>
+  <aside class="flex flex-col h-screen w-1/6 bg-[#003366] text-white p-6">
+    <%= image_tag "securus-logo-white.png", size: "120x30" %>
 
-
-      </nav>
+    <!-- mittlerer Bereich -->
+    <nav class="mt-4 space-y-2 flex-1 overflow-y-auto">
+      <%= link_to "⏵  Server",   servers_path,   class: "block hover:bg-blue-700 p-2 rounded " %>
+      <%= link_to "⏵  Gateways", gateways_path,  class: "block hover:bg-blue-700 p-2 rounded" %>
+      <%= link_to "⏵  Benutzer", users_path,     class: "block hover:bg-blue-700 p-2 rounded" %>
+      <%= link_to "⏵  Profil bearbeiten", edit_user_registration_path,
+                  class: "block hover:bg-blue-700 p-2 rounded" %>
+    </nav>
 
     <%= button_to "⏻  Abmelden",
                   destroy_user_session_path,
                   method: :delete,
-                  form: { "data-turbo" => "false" },
+                  form: { data: { turbo: false }, class: "" },
                   class: "block hover:bg-blue-700 p-2 rounded text-red-200 hover:text-white transition" %>
-
-
   </aside>
 
   <!-- Hauptbereich -->
