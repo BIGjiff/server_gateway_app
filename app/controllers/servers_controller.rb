@@ -1,5 +1,5 @@
 class ServersController < ApplicationController
-  before_action :set_server, only: [:show, :edit, :update, :destroy]
+  before_action :set_server, only: [ :show, :edit, :update, :destroy ]
 
   # GET /servers
   def index
@@ -42,7 +42,7 @@ class ServersController < ApplicationController
   def destroy
     @server= Server.find(params[:id])
     @server.destroy
-    redirect_to servers_path, notice: "🗑 Server wurde gelöscht."
+    redirect_to servers_path, notice: " Server wurde gelöscht."
   end
 
   # GET /servers/search
@@ -64,6 +64,6 @@ class ServersController < ApplicationController
 
   # erlaubt nur bestimmte Felder (strong parameters)
   def server_params
-    params.require(:server).permit(:name, :status)
+    params.require(:server).permit(:name, :status, :description)
   end
 end

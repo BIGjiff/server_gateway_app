@@ -56,7 +56,7 @@ class GatewaysController < ApplicationController
     # DELETE /gateways/1
     def destroy
       @gateway.destroy
-      redirect_to gateways_path, notice: "🗑 Gateway wurde gelöscht."
+      redirect_to gateways_path, notice: "Gateway wurde gelöscht."
     end
 
     # GET /gateways/search
@@ -78,16 +78,6 @@ class GatewaysController < ApplicationController
 
     # erlaubt nur bestimmte Felder (strong parameters)
     def gateway_params
-      params.require(:gateway).permit(:serial, :status, :server_id)
+      params.require(:gateway).permit(:serial, :status, :server_id, :active, :description)
     end
 end
-
-  def destroy
-    # code here
-  end
-
-  private
-
-  def set_gateway
-    # code here
-  end

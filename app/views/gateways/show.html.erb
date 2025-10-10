@@ -1,9 +1,10 @@
 <h1 class="text-2xl font-bold text-[#003366] mb-6">Gateway Details</h1>
 
-<div class="bg-white border border-gray-300 rounded-xl shadow-md p-6 mb-6">
+<div class="max-w-lg mx-auto bg-white border border-gray-200 rounded-xl shadow-md p-6">
   <h2 class="text-xl font-semibold text-[#003366] mb-4">
-    Gateway <%= @gateway.serial %>
+    Gateway: <%= @gateway.serial %>
   </h2>
+
 
   <p class="mb-2 text-gray-600">
     Zugewiesen an:
@@ -13,13 +14,22 @@
       <span class="italic text-gray-400">Kein Server</span>
     <% end %>
   </p>
+  <p class="mb-2 text-gray-600">
+    Beschreibung:
+    <span class="font-medium"><%= @gateway.description %></span>
 
   <p class="text-gray-600 mb-4">
     Zuletzt bearbeitet: <%= @gateway.updated_at.strftime("%d.%m.%Y %H:%M") %>
   </p>
 
-  <div class="flex space-x-3">
-    <%= link_to " Bearbeiten", edit_gateway_path(@gateway), class: "text-yellow-600 hover:underline text-sm" %>
-    <%= link_to " Zurück zur Übersicht", gateways_path, class: "text-blue-600 hover:underline text-sm" %>
+  <div class=" justify-end gap-6 mt-6">
+    <%= link_to "Bearbeiten", edit_gateway_path(@gateway),
+                class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" %>
+    <%= link_to "Löschen", gateway_path(@gateway),
+                data: { turbo_method: :delete, turbo_confirm: "Willst du dieses Gateway wirklich löschen?" },
+                class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" %>
+    <%= link_to "Zurück", gateways_path,
+                class: "px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition" %>
   </div>
+
 </div>

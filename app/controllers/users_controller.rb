@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    return redirect_to root_path if params[:id] == "sign_out"
+
     @user = User.find(params[:id])
   end
 end

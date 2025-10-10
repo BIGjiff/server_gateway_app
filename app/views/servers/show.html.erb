@@ -7,8 +7,11 @@
     <p><strong>Gateways:</strong> <%= pluralize(@server.gateways.count, "Gateway") %></p>
   </div>
 
-  <div class="flex justify-end gap-3 mt-6">
+  <div class=" justify-end gap-6 mt-6">
     <%= link_to "Bearbeiten", edit_server_path(@server),
+                class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" %>
+    <%= link_to "Löschen", server_path(@server),
+                data: { turbo_method: :delete, turbo_confirm: "Willst du dieses Gateway wirklich löschen?" },
                 class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" %>
     <%= link_to "Zurück", servers_path,
                 class: "px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition" %>
